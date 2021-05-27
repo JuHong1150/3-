@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400&display=swap" rel="stylesheet">
+    <!-- 전체 폰트 : Noto Sans -->
+    <link rel="stylesheet" href="static/css/reset.css">
+
+    <link rel="stylesheet" href="static/css/watch.css">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    
+    <link rel="stylesheet" href="static/css/navbar.css"> <!-- 이게 연결해야 하는 navbar css!!! -->
+    <script src="https://kit.fontawesome.com/e7d2ac524a.js" crossorigin="anonymous"></script> <!-- icon -->
+    <style>
+
+        .author1{
+            margin: 14px 0px;
+        }
+
+        .summary-wrapper {
+            border: 1px #fff dashed;
+            width: 700px;
+            height: 200px;
+            margin-top: 20px;
+        }
+
+        .summary-paragraph {
+            margin: 10px;
+            line-height:200%;
+                }
+
+        .button3:hover {
+            background-color:rgb(170, 170, 170);
+           
+        }
+
+        .get-summary-button {
+            width: 80px;
+            height: 35px;
+            margin: 15px;
+            background-color: rgba(216, 220, 228, 0.84);
+            border: 0;
+        }
+
+        .get-summary-text{
+            font-size: 20px;
+            font-weight: 600;
+            display: inline;
+        }
+
+
+        p~button:hover {
+            background-color: yellow;
+            color: black;
+        }
+
+
+        #captions>li {
+            list-style-type: none;
+        }
+
+
+        .current {
+            font-weight: bold;
+            background-color: skyblue;
+        }
+
+        #caption-screen {
+            height: 500px;
+            width: 700px;
+            overflow-y: scroll;
+            margin-top: 30px;
+        }
+
+        .user-question {
+            background-color:  #ecf0f1;
+            max-width: 60%;
+            content: ' ';
+            position: relative;
+            clear:both;           
+            float: left;
+            margin:15px;
+        }
+
+        .user-answer {
+            background-color: #e1e5e5;
+            max-width: 60%;
+            content: ' ';
+            position: relative;
+            clear:both;
+            float: right;
+            margin:15px;
+        }
+
+        .question-wrapper {
+            overflow-y: scroll;
+            margin-top:20px;
+        }
+    </style>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+        integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+        crossorigin="anonymous"></script> -->
+</head>
+
+<body>
+
+
+    <!-- navbar 영역 html 코드를 복사해서 각 페이지에 붙여넣고 head 안에 link로 navbar.css와 script로 navbar.js를 연결하면 됩니다. -->
+    <nav class="navbar">
+        <div class="navbar_logo">
+            <div class="logoBack">
+                <i class="fab fa-youtube logo"></i>
+            </div>
+            <a href="#" class="logoName"><span id="letterI">i</span><span id="Tube">Tube</span></a>
+        </div>
+
+        <!-- 검색창 -->
+        <div class="back">
+            <i class="fas fa-arrow-left" data-toggle="tooltip" data-placement="top" title="뒤로 가기"></i>
+        </div>
+        <form id="search" name="search" method="GET" onsubmit="return false">
+            <div id="wrapSearch">
+                <input type="text" id="searchBox" placeholder="검색">
+
+                <div class="btnWrap">
+                    <input type="button" id="searchBtn" onclick="fnGetList();">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                </div> <!-- // .btnWrap -->
+            </div> <!-- // #wrapSearch -->
+        </form>
+
+        <ul class="navbar_icons">
+            <li class="rtSearch">
+                <i class="fas fa-search scIcon"></i>
+            </li>
+            <li class="profile">
+                <i class="fas fa-user pfIcon"></i>
+            </li>
+        </ul>
+    </nav>
+    <!-- // navbar 영역 끝 -->
+
+
+    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+
+
+    <br>
+
+    <div style="display: flex; flex-flow: inherit">
+        <div style=" margin-left: 30px; flex-grow: 1;">
+            <p class="jb-bold">제목입니다</p>
+
+            <br>
+            <div id="player"></div>
+
+
+            <br><br>
+            <div style="display: flex;">
+                <img class="chThumbnail"
+                    src="https://yt3.ggpht.com/ytc/AAUvwngM95SHpbgirrEiFdf6zX7q7hmaO_9P15Mq9Mkw=s88-c-k-c0x00ffffff-no-rj"
+                    alt="channelThumbnail" style="    display: inline;
+                width: 80px;">
+                
+                <div style="display: inline; margin-left:10px;">
+                
+                <h2 class="author1" >유튜버 명 입니다.</h2>
+                <h3 style="color: #606060;"> 구독자 4.2만명 </h3>
+                </div>
+                <button id="button4" style="margin-top: 10px;     margin-right: 130px;">구독</button>
+            </div>
+            <br><br>
+            <span style="display: block;">조회수 237,993회 • 2020. 6. 9. </span>
+        </div>
+
+        <div class="content-wrapper" style="display: inline; flex-grow: 2; margin-top: 10px;">
+            <button class="button3" onclick="toggleText()">대본보기</button>
+            <button class="button3 btn-get-summary">요약보기</button>
+            <button class="button3" onclick="toggleText1()">질문하기</button>
+
+            <div id="caption-screen" style="display: none;">
+                <h2  style=" font-size: 20px; "> 📌 다시보고 싶은 구간의 대본을 클릭하면 이동할 수 있어요 ! </h2>
+                <ol id="captions" style="line-height: 2em;"></ol>
+            </div>
+
+
+
+
+
+            <div id="question" class="chat-box" style="display: none;">
+                <h2 style="font-size: 22px;">📢 질문이 구체적일수록 정확한 답을 찾을 수 있어요 ! 😊</h2>
+                <span style="font-size: 18px;"> 질문 예시) ❌ 딥러닝? ⭕ 딥러닝은 어느 분야에서 쓰일 수 있어?</span>
+                <div class="question-wrapper">
+                    <div class="question-answer">
+                        <ul class="question-answer-dialog"></ul>
+                    </div>
+                </div>
+                <div class="question">
+                    <form id="question-form">
+                        <input class="question-query input1" type="text" placeholder="무엇이 궁금하신가요?">
+                        <button class="question-button button1">확인</button>
+                    </form>
+                </div>
+            </div>
+<!-- 
+            <div>
+
+                <form id="download-caption" method="POST" action="/download/caption">
+                    <button>
+                        자막 내보내기(.txt)
+                    </button>
+                </form>
+            </div> -->
+        </div>
+    </div>
+
+
+
+    <br><br>
+
+
+    <!-- <div class="videoTitle">
+            <h2 class="test" style="display: inline">#대기업 인사 담당기준</h2>&nbsp&nbsp 
+            <h2 class="test" style="display: inline">  #시선처리</h2>&nbsp&nbsp
+            <h2 class="test" style="display: inline">  #질문대처</h2>&nbsp&nbsp
+            <h2 class="test" style="display: inline">  #1분자기소개</h2>&nbsp&nbsp
+            <h2 class="test" style="display: inline">  #면접태도</h2>&nbsp&nbsp
+        </div> -->
+
+
+
+    <br><br>
+
+
+
+    <br><br><br>
+    <div class="back">
+        <i class="fas fa-arrow-left" data-toggle="tooltip" data-placement="top" title="뒤로 가기"></i>
+    </div>
+
+    <div class="video-section"></div>
+
+    <script>
+    
+    var title = '{{title}}';
+    console.log(title);
+
+        var title = '{{title}}';
+        document.querySelector('.jb-bold').innerText = title;
+        
+        var author= '{{author}}';
+        document.querySelector('.author1').innerText = author;
+        
+        var src = '{{src}}';
+        document.querySelector('.chThumbnail').innerHTML = src;
+
+        var Request = function () {
+            this.getParameter = function (name) {
+                var rtnval = '';
+                var nowAddress = decodeURI(location.href);
+                console.log("주소가 뭐지" + nowAddress); // 한글 인코딩이 제대로 됐는지 확인
+                var parameters = (nowAddress.slice(nowAddress.indexOf('?') + 1,
+                    nowAddress.length)).split('&');
+                for (var i = 0; i < parameters.length; i++) {
+                    var varName = parameters[i].split('=')[0];
+                    if (varName.toUpperCase() == name.toUpperCase()) {
+                        rtnval = parameters[i].split('=')[1];
+                        break;
+                    }
+                }
+                return rtnval;
+            }
+        }
+        var request = new Request();
+
+        var paramValue = request.getParameter('videoId');
+        paramValue = paramValue.replace(/[.*+?^${}()|[\]\\]/g, ' '); // 값이 넘어올 때 특수문자 공백 처리
+
+        // 2. This code loads the IFrame Player API code asynchronously..
+        var tag = document.createElement('script');
+
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        // 3. This function creates an <iframe> (and YouTube player)
+        //    after the API code downloads.
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '600',
+                width: '1100',
+                videoId: paramValue,
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+
+            console.log(player);
+        }
+
+
+
+        // 4. The API will call this function when the video player is ready.
+        function onPlayerReady(event) {
+            event.target.playVideo();
+        }
+
+        // 5. The API calls this function when the player's state changes.
+        //    The function indicates that when playing a video (state=1),
+        //    the player should play for six seconds and then stop.
+        var done = false;
+        var nIntervalId;
+
+        function onPlayerStateChange(event) {
+
+            if (event.data == YT.PlayerState.PLAYING && !done) {
+                // console.log("호호호");
+                nIntervalId = setInterval(trackingCurrentCaption, 1000);
+            } else {
+                clearInterval(nIntervalId);
+            }
+        }
+
+        function hello() {
+            console.log("안녕");
+        }
+
+        function stopVideo() {
+            player.stopVideo();
+        }
+
+        function playAtTime(videoId, startTime) {
+            player.loadVideoById(videoId, startTime);
+        }
+
+    </script>
+    <script>
+
+        var smJson = JSON.parse({{ smJson| tojson | safe }});
+        smJson = smJson[0]
+
+        var caption = JSON.parse({{ caption| tojson | safe }});
+        caption = JSON.parse(caption["caption"][0]["caption_json"])
+
+        // Displaying Keyword!!
+
+        // Create CAPTION SCREEN
+        let captionOlElem = document.querySelector("#captions");
+
+        let numOfli = 0;
+        caption.forEach(
+            (data) => {
+
+                let liElem = document.createElement("li");
+                let spanElem = document.createElement("span");
+                let spanTimeElem = document.createElement("span");
+
+                spanElem.setAttribute("role", "link")
+                spanElem.setAttribute("data-start", data["start"])
+                spanElem.setAttribute("data-dur", data["dur"])
+                spanElem.setAttribute("data-index", numOfli);
+                spanElem.setAttribute("tabindex", "0")
+
+                spanElem.textContent = data["text"];
+
+                let min;
+                let sec;
+
+                min = Math.floor(data["start"] / 60);
+                sec = Math.floor(data["start"] % 60);
+
+                // console.log(min, sec)
+                let adjusted_min;
+                let adjusted_sec;
+
+                if ((min / 10) >= 1) {
+                    adjusted_min = min.toString();
+                } else {
+                    adjusted_min = "0" + min
+                }
+
+                if ((sec / 10) >= 1) {
+                    adjusted_sec = sec.toString();
+                } else {
+                    adjusted_sec = "0" + sec
+                }
+
+                let formattedTime;
+                formattedTime = "(" + adjusted_min + ":" + adjusted_sec + ") ";
+
+                spanTimeElem.textContent = formattedTime;
+
+                liElem.appendChild(spanTimeElem);
+                liElem.appendChild(spanElem);
+
+                captionOlElem.appendChild(liElem);
+
+                numOfli++;
+            }
+        )
+
+        // CAPTION) Event Listener(click -> auto start from that part)
+        let captionLiElem = document.querySelectorAll("#captions > li");
+        captionLiElem.forEach(element => {
+            element.addEventListener('click', function (event) {
+                let span = element.querySelector("span[role='link']")
+                playAtTime(videoId, span.dataset.start);
+            })
+        })
+
+        // CAPTION) current caption tracking
+        function trackingCurrentCaption() {
+            let index = caption.map(({ start }) => start).filter(start => start < player.getCurrentTime()).length - 1
+
+            let captionLiElem = document.querySelectorAll("#captions > li");
+            captionLiElem.forEach((element) => element.className = "");
+            captionLiElem[index].className = "current";
+        }
+
+        var captionSwitchButton = document.querySelector(".caption-switch");
+        captionSwitchButton.addEventListener("click", () => {
+
+            let captionScreen = document.querySelector("#caption-screen");
+
+            if (captionSwitchButton.textContent == "자막감추기") {
+                captionScreen.style.display = "none";
+                captionSwitchButton.textContent = "자막보이기"
+            } else {
+                captionScreen.style.display = "block";
+                captionSwitchButton.textContent = "자막감추기"
+            }
+        })
+    </script>
+
+    <script>
+
+        function toggleText() {
+            var text = document.getElementById("caption-screen");
+            if (text.style.display === "none") {
+                text.style.display = "block";
+            } else {
+                text.style.display = "none";
+            }
+        }
+
+        function toggleText1() {
+            var text = document.getElementById("question");
+            if (text.style.display === "none") {
+                text.style.display = "block";
+            } else {
+                text.style.display = "none";
+            }
+        }
+    </script>
+    <script>
+        var getNBtn;
+        var summary_json = smJson
+        var getSummaryBtnClicked = false
+        getSummaryBtn = document.querySelector(".btn-get-summary");
+        getSummaryBtn.addEventListener("click", () => {
+           
+            let contentWrapper = document.querySelector(".content-wrapper");
+
+            if (!getSummaryBtnClicked) {
+                let divElement = document.createElement("div");
+                divElement.className = "summary-wrapper";
+                
+                let getElementById = document.createElement("h3");
+                let get3Btn = document.createElement("button");
+                let get7Btn = document.createElement("button");
+                let get10Btn = document.createElement("button");
+                
+                getElementById.classList.add("get-summary-text", "get-main");
+                get3Btn.classList.add("get-summary-button", "get-3-line");
+                get7Btn.classList.add("get-summary-button", "get-7-line");
+                get10Btn.classList.add("get-summary-button", "get-10-line");
+                
+                getElementById.textContent="🙂 원하는 줄의 갯수를 선택해주세요 ! ";
+                get3Btn.textContent = "3줄요약";
+                get7Btn.textContent = "7줄요약";
+                get10Btn.textContent = "10줄요약";
+
+                getNBtn = [getElementById,get3Btn, get7Btn, get10Btn];
+
+
+                let pElement = document.createElement("p");
+                pElement.className = "summary-paragraph";
+                pElement.textContent = summary_json.result_sum_line3;
+
+               
+
+                get3Btn.addEventListener("click", () => {
+                    pElement.textContent = summary_json.result_sum_line3;
+                    getNBtn.forEach((element) => { defaultGetNBtn(element) });
+                    get3Btn.style.backgroundColor = "#aaa";
+                    get3Btn.style.Color = "black";
+
+                });
+
+                get7Btn.addEventListener("click", () => {
+                    pElement.textContent = summary_json.result_sum_line7;
+                    getNBtn.forEach((element) => { defaultGetNBtn(element) });
+                    get7Btn.style.backgroundColor = "#aaa";
+                    get7Btn.style.Color = "black";
+                });
+
+                get10Btn.addEventListener("click", () => {
+                    pElement.textContent = summary_json.result_sum_line10;
+                    getNBtn.forEach((element) => { defaultGetNBtn(element) });
+                    get10Btn.style.backgroundColor = "#aaa";
+                    get10Btn.style.Color = "black";
+                });
+
+                divElement.append(getElementById, get3Btn, get7Btn, get10Btn, pElement);
+                contentWrapper.appendChild(divElement);
+            } else  {
+
+
+
+                
+            }
+        });
+
+
+        function defaultGetNBtn(element) {
+            element.style.backgroundColor = "#d8dce4d6";
+            element.style.Color = "black";
+        }
+    </script>
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"
+        integrity="sha384-LzhRnpGmQP+lOvWruF/lgkcqD+WDVt9fU3H4BWmwP5u5LTmkUGafMcpZKNObVMLU"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf-8">
+
+        // Q & A Part
+        var qnaElement = document.querySelector(".question-answer-dialog");
+        const socket = io();
+        questionForm = document.querySelector("#question-form");
+        questionForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            let liElement = document.createElement("li");
+
+            let searchElement = document.querySelector(".question-query");
+            let searchQuery = searchElement.value;
+
+            liElement.className = "user-question";
+            liElement.textContent = "Q: " + searchQuery
+            qnaElement.appendChild(liElement);
+
+            console.log(searchQuery);
+            socket.emit('ask_question', searchQuery);
+        });
+
+        socket.on('send_answer', (answer) => {
+            let liElement = document.createElement("li");
+
+            liElement.className = "user-answer";
+            liElement.textContent = "A: " + answer;
+            qnaElement.appendChild(liElement);
+        })
+
+        // questionBtn = document.querySelector(".question-button");
+        // questionBtn.addEventListener("click", (e) => {
+        //     let searchElement = document.querySelector(".question-query");
+        //     let searchQuery = searchElement.value;
+
+        //     socket.emit('ask_question', { data: searchQuery });
+        // });
+    </script>
+    <script>
+
+
+    </script>
+
+</body>
+
+</html>

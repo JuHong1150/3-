@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>HoHo</title>
+        <script>
+            var videoId = '{{ video_id }}';
+            var smJson = JSON.parse({{ smJson|tojson|safe }});
+            var caption = JSON.parse({{ caption|tojson|safe }});
+
+            caption = JSON.parse(caption["caption"][0]["caption_json"])
+        </script>
+    </head>
+    <body>
+        <h1>Test for JINJA</h1>
+    </body>
+</html>

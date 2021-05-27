@@ -1,0 +1,168 @@
+.videoTitle {
+    text-align: left;
+    padding-left: 10px;
+    display: flex;
+    padding-top: 5px;
+    line-height: 20px;
+    margin-left:10%;
+}
+
+.test {
+    text-decoration:none;
+    border-bottom:1px solid #0f0e0d;
+    padding-bottom:2px;
+}
+
+.caption-wrapper {
+    padding: 10px;
+    width: 550px;
+
+}
+
+.caption-wrapper:nth-child(2n+1) {
+    background-color: lightgray;
+}
+
+
+.jb-bold {
+    font-weight: 500;
+    font-size: 200%;
+    line-height: 1.5em;
+    font-family: 'Noto Sans KR';
+}
+
+.search{
+    height: 35px;
+    width: 80%;
+    border: 1px solid #ccc;
+    background: #ffffff;
+    margin-left: 5%;
+    float: left;
+}
+
+.question-wrapper {
+    width: 690px;
+    height: 400px;
+    border: 2px groove;
+}
+
+#input1, .input1{
+    font-size:16px;
+    width:610px;
+    padding:8px;
+    border: 1px black ridge;
+    margin-top: 10px;
+}
+
+.header1{
+    font-size: xx-large;
+    font-weight: 600;
+    margin-left:320px;
+}
+
+
+
+#button1, .button1{
+    width: 60px;
+    height: 36px;
+    border:0px;
+    background:#CC0000;
+    color: #ffffff;
+}
+
+#button2{
+    display: inline;
+    width: 100px;
+	height: 30px;
+	color:#fff;
+	background: #000000;
+	border:0px;
+	border-radius: 20px;
+    
+    }
+
+.button3{
+    padding: 15px 82px;
+    margin:10px 4px;
+    font-size: 15px;
+    color: black;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    position: relative;
+    text-decoration: none;
+    display:inline-block;
+    border:0;
+    background-color:#d8dce4d6;
+    }
+    
+    #button4{
+        width: 80px;
+        height: 50px;
+        border:0px;
+        background:#CC0000;
+        outline: none;
+        color: #ffffff;
+        font-size: 17px;
+        margin-left:700px;
+    }
+ 
+    
+
+        /* 전체본문 */
+    .chat-box {
+        display: table;
+        color: #34495e;
+        margin: 0 0 30px 0;
+        }
+    
+        /* row */
+        .chat-box li {
+            display: table;
+            padding: 20px;
+            font-size: 20px;
+        }
+    
+        /* 첫번째 row의 끝을 둥글게 한다 */
+        .chat-box li:first-child {
+
+        border-top-left-radius: 10px;
+        border-top-right-radius:10px;
+        
+        }
+    
+        /* 마지막 row의 끝을 둥글게 한다 */
+        .chat-box li:last-child {   
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        
+        }
+    
+        /*"이름 :" 이 쓰여지는 부분 */
+        .chat-box li span {
+        padding: 0 30px 0 0;
+        color: #7f8c8d;
+        }
+    
+        /* 홀수 row의 색 */
+        .chat-box .odd {
+        background-color: #ecf0f1;
+        max-width: 60%;
+        clear: both;
+        float: left;
+        }
+    
+        /* 짝수 row의 색 */
+        .chat-box .even {
+        background-color: #e1e5e5;
+        max-width: 60%;
+        float: right;
+        clear:both;
+}
+
+
+
+
+    
+    
+    

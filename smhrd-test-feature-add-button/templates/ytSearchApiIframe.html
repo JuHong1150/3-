@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>iTube</title>
+
+    <link rel="shortcut icon" href="#">
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400&display=swap" rel="stylesheet"> <!-- 폰트 : Noto Sans -->
+    <link rel="stylesheet" href="/static/css/navbar.css"> <!--navbar css-->
+    <link rel="stylesheet" href="/static/css/searchIframe.css"> <!--메인 css-->
+    
+    <!-- <script src="D:\ws\project\smhrd-test\templates\navbar.js"></script> -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://kit.fontawesome.com/e7d2ac524a.js" crossorigin="anonymous"></script> <!-- icon -->
+
+    <!-- <script src="templates\js\navbar.js"></script> -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> <!-- 뒤로가기 버튼 호버 메세지 출력 위한 부트스트랩 js : navbar.js와 연관 -->
+
+</head>
+<body>
+    <!-- navbar 영역 -->
+    <!-- navbar 영역 html 코드를 복사해서 각 페이지에 붙여넣고 head 안에 link로 navbar.css와 script로 navbar.js를 연결하면 됩니다. -->
+    <div id="container">
+        <nav class="navbar">
+            <div class="navbar_logo">
+                <div class="logoBack">
+                    <i class="fab fa-youtube logo"></i>
+                </div>
+                <a href="#" class="logoName"><span id="letterI">i</span><span id="Tube">Tube</span></a>
+            </div>
+            <!-- 검색창 -->
+            <div class="back">
+                <i class="fas fa-arrow-left" data-toggle="tooltip" data-placement="top" title="뒤로 가기"></i>
+            </div>
+            <form id="search" name="search" method="GET" action="/search">
+                <div id="wrapSearch">
+                    <input type="text" id="searchBox" name="searchBox" placeholder="검색">
+
+                    <div class="btnWrap">
+                        <input type="submit" id="searchBtn" value="">
+                        <i class="fas fa-search"></i>
+                    </div> <!-- // .btnWrap -->
+
+                </div> <!-- // #wrapSearch -->
+            </form>
+
+            <ul class="navbar_icons">
+                <li class="rtSearch">
+                    <i class="fas fa-search scIcon"></i>
+                </li>
+                <li class="profile">
+                    <i class="fas fa-user pfIcon"></i>
+                </li>
+            </ul>
+        </nav>
+        <!-- // navbar 영역 끝 -->
+
+        <!-- 연관 키워드 영역 -->
+        
+        <ul class="kwList">
+            <div class="itsKw">관련 키워드 | </div>
+            <li class="kwLi"><span>#</span><span class="keyword">이달의 소녀</span></li>
+            <li class="kwLi"><span>#</span><span class="keyword">이달소 이브</span></li>
+            <li class="kwLi"><span>#</span><span class="keyword">이달소 츄</span></li>
+            <li class="kwLi"><span>#</span><span class="keyword">올리비아 혜</span></li>
+            <li class="kwLi"><span>#</span><span class="keyword">스테이씨</span></li>
+            
+        </ul>
+
+        <!-- 비디오 목록 영역 -->
+        <div class="wrap">
+            <div id="videoList"></div>
+            <div id="nav_view"></div>
+        </div>
+
+    </div> <!-- end #container -->
+
+    <script> {% include 'js/ytSearchIframe_final_copy.js' %} </script>    
+    
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iTube</title>
+    
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400&display=swap" rel="stylesheet"> <!-- 전체 폰트 : Noto Sans -->
+    <link rel="stylesheet" href="/static/css/searchMain.css"> <!-- 메인 css -->
+
+    <script src="https://kit.fontawesome.com/e7d2ac524a.js" crossorigin="anonymous"></script> <!-- icon -->
+
+</head>
+<body>
+    <div id="wrap">
+        <div class="loginBtn"><i class="fas fa-user pfIcon"></i>로그인</div>
+
+        <div class="logo">
+            <div class="logoBack">
+                <i class="fab fa-youtube logoIcon"></i>
+            </div>
+            <div class="logoName">
+                <span id="letterI">i</span><span id="Tube">Tube</span>
+            </div>
+        </div>
+
+        <form id="search" name="search" method="GET" action="/search">
+            <div id="wrapSearch">
+
+                <div id="btnWrap">
+                    <input type="submit" id="searchBtn" value="">
+                    <i class="fas fa-search"></i>
+                </div> <!-- // #btnWrap -->
+
+                <input type="text" id="searchBox" name="searchBox" placeholder="검색">
+            </div> <!-- // #wrapSearch -->
+        </form>
+
+    </div> <!-- // #wrap -->
+
+    <!-- 로그인 회원가입 팝업 -->
+    <div class="loginPop" style="display: none;">
+
+        <div class="login">
+
+            <div class="popItube">
+                <div class="popLogo">
+                    <div class="popLogoBack">
+                        <i class="fab fa-youtube popLogoIcon"></i>
+                    </div>
+                </div>
+
+                <div>로그인</div>
+                
+            </div>
+
+            <form action="" id="loginForm">
+                <div class="loginInputWrap">
+                    <div class="loginIdWrap">
+                        <div class="labels">로그인 아이디</div>
+                        <input type="text" name="loginId" id="loginId" class="text" placeholder="아이디를 입력하세요.">
+                    </div>
+
+                    <div class="loginPwWrap">
+                        <div class="labels">로그인 비밀번호</div>
+                        <input type="password" name="loginPw" id="loginPw" class="text" placeholder="비밀번호를 입력하세요.">
+                    </div>
+                </div>
+                <input type="submit" value="로그인" class="submit loginSubmit">
+            </form>
+
+        </div> <!-- end .login -->
+
+        <div class="join">
+            <div class="popItube">
+                <div class="popLogo">
+                    <div class="popLogoBack">
+                        <i class="fab fa-youtube popLogoIcon"></i>
+                    </div>
+                </div>
+
+                <div><span id="letterI">i</span><span id="Tube">Tube 계정 만들기</span></div>
+            </div>
+
+            <form action="" id="joinForm">
+                <div class="labels">회원가입 아이디</div>
+                <input type="text" name="joinId" id="joinId" placeholder="아이디를 입력하세요." class="text">
+                <div class="labels">회원가입 비밀번호</div>
+                <input type="password" name="joinPw" id="joinPw" placeholder="비밀번호를 입력하세요." class="text">
+                <div class="labels">이름</div>
+                <input type="text" name="joinName" id="joinName" placeholder="이름을 입력하세요." class="text">
+                <div class="labels">생년월일</div>
+                <input type="text" name="joinBirth" id="joinBirth" placeholder="YYMMDD" class="text">
+
+                <div class="genderWrap">
+                    <span>성별</span>
+                    <input type="radio" name="joinGender" id="male" value="male">
+                    <label for="male" class="gender">남</label>
+
+                    <input type="radio" name="joinGender" id="female" value="female">
+                    <label for="male" class="gender">여</label>
+
+                    <input type="radio" name="joinGender" id="other" value="other">
+                    <label for="male" class="gender">해당 없음</label>
+                </div>
+
+                <input type="submit" value="확인" class="submit joinSubmit">
+            </form>
+        </div> <!-- end .join -->
+
+    </div> <!-- end .loginPop -->
+
+</body>
+</html>

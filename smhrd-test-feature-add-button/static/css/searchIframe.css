@@ -1,0 +1,184 @@
+:root {
+    --searchbox-button-icon-color: #858585;
+    --searchbox-button-border-color: #d3d3d3;
+    --searchbox-button-color: #f8f8f8;
+    --searchbox-border-shadow-color: #eee;
+    --icon-color: #585858;
+    --logo-color: #FF0000;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    padding: 10px 30px;
+}
+
+#container {
+    width: 80%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+/* 연관 키워드 영역 */
+.itsKw {
+    font-weight: 700;
+}
+
+.kwList {
+    width: 100%;
+    display: flex;
+    text-align: center;
+    margin: 0 auto;
+    padding: 10px 20px;
+}
+
+.kwLi {
+    margin: 0 auto;
+    cursor: pointer;
+    color: var(--icon-color);
+}
+
+.kwLi:hover {
+    text-decoration: underline;
+}
+
+/* 비디오 목록 영역 */
+.wrap {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.videoBox {
+    margin-bottom: 10px;
+    display: flex;
+    width: 100%;
+}
+
+/* 영상 제목 등 디테일 영역 */
+.infosWrap {
+    width: 100%;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    /* padding-right: 360px; */
+    overflow: hidden;
+}
+
+.infos{
+    width: 100%;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.title {
+    text-decoration: none;
+    color: black;
+    display: block;
+    font-size: 1.2em;
+    margin-bottom: 7px;
+    line-height: 30px;
+}
+
+.thumbBox {
+    height: 25px;
+    line-height: 25px;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.chThumbnail {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.details {
+    font-size: 14px;
+    color: var(--icon-color);
+}
+
+.summaryWrap {
+    position: relative;
+    /* padding: 10px; */
+}
+
+.itsSm {
+    color: var(--icon-color);
+}
+
+.summary {
+    /* margin-bottom: 20px; */
+    display: inline-block;
+    text-align: left;
+    padding-top: 10px;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    height: 30px;
+    line-height: 1.3em;
+}
+
+.down, .up {
+    font-size: 15px;
+    text-align: left;
+    cursor: pointer;
+    color: var(--icon-color);
+}
+
+.down:hover, .up:hover {
+    text-decoration: underline;
+}
+
+.up {
+    display: none;
+    padding-top: 10px;
+}
+
+@media screen and (max-width:768px) {
+    /* 영상 크기 반응형 */
+    .iframeBox {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+        /* width: 360px; */
+        max-width: 100%;
+    }
+
+    .video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    /* flex로 놓여있던 영상 정보 block으로 쌓기 */
+    .videoBox {
+        display: block;
+    }
+
+    .infosWrap {
+        padding: 0;
+    }
+
+    .infos {
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+/* 이전 페이지, 다음 페이지 */
+.prevPage, .nextPage {
+    /* display: block; */
+    cursor: pointer;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background-color: var(--searchbox-border-shadow-color);
+    color: var(--icon-color);
+    margin-bottom: 8px;
+}
+

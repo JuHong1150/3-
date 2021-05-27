@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+    <style>
+        .keyword {
+            cursor: pointer;
+        }
+
+        .keyword:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <input type="text" id="searchBox">
+        <input type="submit">
+    </form>
+
+    <ul>
+        <li class="keyword">이달의 소녀</li>
+        <li class="keyword">츄</li>
+        <li class="keyword">이브</li>
+        <li class="keyword">why not</li>
+        <li class="keyword">so what</li>
+    </ul>
+
+    <script>
+        var keywords = $('.keyword');
+        console.log(keywords);
+        console.log(keywords[0]);
+
+        keywords.each(function(index) {
+            $(this).click(function(){
+                console.log($(this));
+                var kwValue = $(this).text();
+                console.log(kwValue);
+                $("#searchBox").val(kwValue);
+                console.log($("#searchBox").val());
+            });
+        });
+    </script>
+</body>
+</html>
